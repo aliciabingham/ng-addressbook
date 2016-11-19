@@ -10,7 +10,6 @@ app.factory("ContactFactory", function($q, $http, FIREBASE_CONFIG){
         Object.keys(response).forEach(function(key){
           response[key].id = key;
           contacts.push(response[key]);
-          console.log(response);
         });
         resolve(contacts);
       })

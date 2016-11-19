@@ -9,7 +9,7 @@ app.controller("TodoCtrl", function($scope, ContactFactory){
 
 let getContacts = function(){
   ContactFactory.getContactList().then(function(fbContacts){
-    $scope.contact = fbContacts;
+    $scope.contacts = fbContacts;
   });
 };
 
@@ -27,11 +27,9 @@ getContacts();
   };
 
   $scope.addNewContact = function(){
-    $scope.newContact.isCompleted = false;
-    // $scope.newContact.id = $scope.contact.length;
     console.log("newContact in function", $scope.newContact);
     // $scope.contact.push($scope.newContact);
-    ContactFactory.postNewItem($scope.newContact).then(function(itemId){
+    ContactFactory.postNewContact($scope.newContact).then(function(itemId){
       getContacts();
       $scope.newContact = {};
       $scope.showListView = true;
