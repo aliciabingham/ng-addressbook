@@ -1,0 +1,19 @@
+{
+  "contacts": {
+    "contact0": {
+      "name": "Rhonda",
+      "email": "yourmom@mymom.org",
+      "phone": "555-123-4567"
+    },
+    "contact1": {
+      "name": "Keith",
+      "email": "mydad@mydad.org",
+      "phone": "555-123-4567"
+    },
+    "contact2": {
+      "name": "Stephanie",
+      "email": "wife@wife.com",
+      "phone": "555-932-2222"
+    }
+  }
+}
