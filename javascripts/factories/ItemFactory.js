@@ -37,6 +37,45 @@ app.factory("ContactFactory", function($q, $http, FIREBASE_CONFIG){
     });
   };
 
+var deleteContact = function(contactID) {
+  return $q((resolve, reject) => {
+    $http.delete(`${FIREBASE_CONFIG.databaseURL}/contacts/${contactID}.json`)
+    .success(function(deleteResponse){
+      resolve(deleteResponse);
+    })
+    .error(function(deleteError){
+      reject(deleteError);
+    });
+  });
+};
 
-return {getContactList:getContactList, postNewContact:postNewContact};
+var getSingleContact = function(contactID){
+  return $q((resolve, reject) => {
+    $http.get(`${FIREBASE_CONFIG.databaseURL}/contacts/${contactID}.json`)
+    .success(function(getSingleResponse){
+      resolve(getSingleResponse);
+    })
+    .error(function(getSingleError){
+      reject(getSingleError);
+    });
+  });
+};
+
+var editContact = function(editContact){
+  return $q((resolve, reject) => {
+    $http.put(`${FIREBASE_CONFIG.databaseURL}/contacts/${editContact.id}.json`);
+    JSON.stringify({
+      name: editContact.name
+    })
+    .success(function(editResponse){
+      resolve(editResponse);
+    })
+    .error(function(editError){
+      reject(editError);
+    });
+  });
+};
+
+
+return {getContactList:getContactList, postNewContact:postNewContact, deleteContact:deleteContact, getSingleContact:getSingleContact, editContact:editContact};
 });
