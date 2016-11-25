@@ -23,9 +23,10 @@ app.factory("ContactFactory", function($q, $http, FIREBASE_CONFIG){
     return $q((resolve, reject) => {
       $http.post(`${FIREBASE_CONFIG.databaseURL}/contacts.json`,
         JSON.stringify({
-          assignedTo: newContact.assignedTo,
-          isCompleted: newContact.isCompleted,
-          task: newContact.task
+          firstName: newContact.firstName,
+          lastName: newContact.lastName,
+          email: newContact.email,
+          phone: newContact.phone
         })
         )
       .success(function(postResponse){
@@ -42,6 +43,7 @@ var deleteContact = function(contactID) {
     $http.delete(`${FIREBASE_CONFIG.databaseURL}/contacts/${contactID}.json`)
     .success(function(deleteResponse){
       resolve(deleteResponse);
+      console.log(deleteResponse);
     })
     .error(function(deleteError){
       reject(deleteError);
@@ -65,7 +67,8 @@ var editContact = function(editContact){
   return $q((resolve, reject) => {
     $http.put(`${FIREBASE_CONFIG.databaseURL}/contacts/${editContact.id}.json`);
     JSON.stringify({
-      name: editContact.name
+      firstName: editContact.firstName,
+      lastName: editContact.lastName
     })
     .success(function(editResponse){
       resolve(editResponse);
