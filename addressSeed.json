@@ -1,17 +1,20 @@
 {
   "contacts": {
     "contact0": {
-      "name": "Rhonda",
+      "firstName": "Rhonda",
+      "lastName": "Bingham",
       "email": "yourmom@mymom.org",
       "phone": "555-123-4567"
     },
     "contact1": {
-      "name": "Keith",
+      "firstName": "Keith",
+      "lastName": "Bingham",
       "email": "mydad@mydad.org",
       "phone": "555-123-4567"
     },
     "contact2": {
-      "name": "Stephanie",
+      "firstName": "Stephanie",
+      "lastName": "Miceli",
       "email": "wife@wife.com",
       "phone": "555-932-2222"
     }

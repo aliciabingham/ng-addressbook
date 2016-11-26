@@ -23,9 +23,10 @@ app.factory("ContactFactory", function($q, $http, FIREBASE_CONFIG){
     return $q((resolve, reject) => {
       $http.post(`${FIREBASE_CONFIG.databaseURL}/contacts.json`,
         JSON.stringify({
-          assignedTo: newContact.assignedTo,
-          isCompleted: newContact.isCompleted,
-          task: newContact.task
+          firstName: newContact.firstName,
+          lastName: newContact.lastName,
+          email: newContact.email,
+          phone: newContact.phone
         })
         )
       .success(function(postResponse){
@@ -37,6 +38,47 @@ app.factory("ContactFactory", function($q, $http, FIREBASE_CONFIG){
     });
   };
 
+var deleteContact = function(contactID) {
+  return $q((resolve, reject) => {
+    $http.delete(`${FIREBASE_CONFIG.databaseURL}/contacts/${contactID}.json`)
+    .success(function(deleteResponse){
+      resolve(deleteResponse);
+      console.log(deleteResponse);
+    })
+    .error(function(deleteError){
+      reject(deleteError);
+    });
+  });
+};
 
-return {getContactList:getContactList, postNewContact:postNewContact};
+var getSingleContact = function(contactID){
+  return $q((resolve, reject) => {
+    $http.get(`${FIREBASE_CONFIG.databaseURL}/contacts/${contactID}.json`)
+    .success(function(getSingleResponse){
+      resolve(getSingleResponse);
+    })
+    .error(function(getSingleError){
+      reject(getSingleError);
+    });
+  });
+};
+
+var editContact = function(editContact){
+  return $q((resolve, reject) => {
+    $http.put(`${FIREBASE_CONFIG.databaseURL}/contacts/${editContact.id}.json`);
+    JSON.stringify({
+      firstName: editContact.firstName,
+      lastName: editContact.lastName
+    })
+    .success(function(editResponse){
+      resolve(editResponse);
+    })
+    .error(function(editError){
+      reject(editError);
+    });
+  });
+};
+
+
+return {getContactList:getContactList, postNewContact:postNewContact, deleteContact:deleteContact, getSingleContact:getSingleContact, editContact:editContact};
 });

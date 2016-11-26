@@ -1,0 +1,12 @@
+<div ng-show="!showListView">
+<h3>New Contact</h3>
+<form>
+  <div class="form-group" id="add-contact-text" placeholder="New Contact">
+    <input type="text" class="form-control" id="add-contact-text" placeholder="New Contact First Name" ng-model="newContact.firstName" required autofocus>
+    <input type="text" class="form-control" placeholder="New Contact Last Name" ng-model="newContact.lastName">
+    <input type="email" class="form-control" placeholder="New Contact Email" ng-model="newContact.email">
+    <input type="number" class="form-control" placeholder="New Contact Phone Number" ng-model="newContact.phone">
+  </div>
+  <button type="button" class="btn btn-primary btn-lg col-xs-2" ng-click="addNewContact()">New Contact</button>
+</form>
+</div>
