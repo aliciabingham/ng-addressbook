@@ -1,14 +1,15 @@
 'use strict';
 
-app.controller("ContactListCtrl", function($scope, ContactFactory){
+app.controller("ContactListCtrl", function($scope, $rootScope, ContactFactory){
   $scope.welcome = 'hello';
   $scope.contacts = [];
 
 let getContacts = function(){
-  ContactFactory.getContactList().then(function(fbContacts){
+  ContactFactory.getContactList($rootScope.user.uid).then(function(fbContacts){
     $scope.contacts = fbContacts;
   });
 };
+
 
 getContacts();
 

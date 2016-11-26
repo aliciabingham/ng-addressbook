@@ -18,7 +18,7 @@ app.controller("AuthCtrl", function($rootScope, $scope, $location, AuthFactory, 
         $rootScope.user = userCreds;
         $scope.login = {};
         $scope.register = {};
-        $location.url("/items/list");
+        $location.url("/contacts/list");
       });
   };
 
@@ -34,6 +34,7 @@ app.controller("AuthCtrl", function($rootScope, $scope, $location, AuthFactory, 
 
   $scope.registerUser = function(registerNewUser){
     AuthFactory.registerWithEmail(registerNewUser).then(function(didRegister){
+      console.log("didRegister", didRegister);
       registerNewUser.uid = didRegister.uid;
       return UserFactory.addUser(registerNewUser);
     }).then(function(registerComplete){

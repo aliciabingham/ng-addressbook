@@ -4,19 +4,32 @@
       "firstName": "Rhonda",
       "lastName": "Bingham",
       "email": "yourmom@mymom.org",
-      "phone": "555-123-4567"
+      "phone": "555-123-4567",
+      "uid": "SNzZ1csWeWg9HnzoY5NFGqAmcIo1"
     },
     "contact1": {
       "firstName": "Keith",
       "lastName": "Bingham",
       "email": "mydad@mydad.org",
-      "phone": "555-123-4567"
+      "phone": "555-123-4567",
+      "uid" : "SNzZ1csWeWg9HnzoY5NFGqAmcIo1"
     },
     "contact2": {
       "firstName": "Stephanie",
       "lastName": "Miceli",
       "email": "wife@wife.com",
-      "phone": "555-932-2222"
+      "phone": "555-932-2222",
+      "uid": "6Nc6NXm4pxYMCac6I9YyzIIiDRn1"
+    }
+  },
+  "users":{
+    "user0":{
+      "uid":"SNzZ1csWeWg9HnzoY5NFGqAmcIo1",
+      "username":"b"
+    },
+    "user1":{
+      "uid":"6Nc6NXm4pxYMCac6I9YyzIIiDRn1",
+      "username":"a"
     }
   }
 }

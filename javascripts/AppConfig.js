@@ -1,27 +1,64 @@
 "use strict";
 
-app.run(function(FIREBASE_CONFIG){
-  firebase.initializeApp(FIREBASE_CONFIG);
+let isAuth = (AuthFactory) => new Promise((resolve, reject) => {
+  if(AuthFactory.isAuthenticated()){
+    resolve();
+  } else {
+    reject();
+  }
+});
 
+
+app.run(function($rootScope, $location, FIREBASE_CONFIG, AuthFactory){
+  firebase.initializeApp(FIREBASE_CONFIG);
+  $rootScope.$on('$routeChangeStart', function(event, currRoute, prevRoute){
+
+    let logged = AuthFactory.isAuthenticated();
+
+    let appTo;
+
+    if(currRoute.originalPath){
+      appTo = currRoute.originalPath.indexOf('/auth') !== -1;
+   }
+
+    if (!appTo && !logged) {
+      event.preventDefault();
+      $location.path('/auth');
+    }
+
+  });
 });
 
 app.config(function($routeProvider){
- $routeProvider
+  $routeProvider
+    .when('/auth', {
+    templateUrl: 'partials/auth.html',
+    controller: 'AuthCtrl'
+    })
     .when('/contacts/list', {
       templateUrl: 'partials/contact-list.html',
-      controller: 'ContactListCtrl'
+      controller: 'ContactListCtrl',
+      resolve: {isAuth}
     })
     .when('/contacts/new', {
       templateUrl: 'partials/contact-new.html',
-      controller: 'ContactNewCtrl'
+      controller: 'ContactNewCtrl',
+      resolve: {isAuth}
     })
     .when('/contacts/view/:id', {
-      templateUrl: 'partials/item-view.html',
-      controller: 'ItemViewCtrl'
+      templateUrl: 'partials/contact-view.html',
+      controller: 'ContactViewCtrl',
+      resolve: {isAuth}
     })
     .when('/contacts/edit/:id', {
       templateUrl: 'partials/contact-new.html',
-      controller: 'ItemEditCtrl'
+      controller: 'ContactEditCtrl',
+      resolve: {isAuth}
     })
-    .otherwise('/contacts/list');
+    .when('/logout',{
+      templateUrl:'partials/auth.html',
+      controller: 'AuthCtrl',
+      resolve: {isAuth}
+    })
+   .otherwise('/auth');
 });
