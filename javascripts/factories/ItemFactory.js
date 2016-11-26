@@ -26,7 +26,8 @@ app.factory("ContactFactory", function($q, $http, FIREBASE_CONFIG){
           firstName: newContact.firstName,
           lastName: newContact.lastName,
           email: newContact.email,
-          phone: newContact.phone
+          phone: newContact.phonem,
+          uid: newContact.uid
         })
         )
       .success(function(postResponse){

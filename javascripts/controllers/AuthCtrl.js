@@ -1,8 +1,8 @@
 'use strict';
 
 app.controller("AuthCtrl", function($rootScope, $scope, $location, AuthFactory, UserFactory){
-  $scope.loginContainer = true;
-  $scope.registerContainer = false;
+  // $scope.loginContainer = true;
+  $scope.registerContainer = true;
 
   if($location.path() === "/logout"){
     AuthFactory.logout();
@@ -40,6 +40,10 @@ app.controller("AuthCtrl", function($rootScope, $scope, $location, AuthFactory, 
     }).then(function(registerComplete){
       logMeIn(registerNewUser);
     });
+  };
+
+  $scope.alreadyHaveAnAccount = function() {
+    $location.url('auth/login');
   };
 
   $scope.loginUser = function(loginNewUser){

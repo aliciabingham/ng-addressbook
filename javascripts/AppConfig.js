@@ -35,6 +35,11 @@ app.config(function($routeProvider){
     templateUrl: 'partials/auth.html',
     controller: 'AuthCtrl'
     })
+    .when('/auth/login', {
+      templateUrl: 'partials/login.html',
+      controller: 'LoginCtrl',
+      resolve: {isAuth}
+    })
     .when('/contacts/list', {
       templateUrl: 'partials/contact-list.html',
       controller: 'ContactListCtrl',

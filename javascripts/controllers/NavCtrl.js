@@ -3,15 +3,15 @@
 app.controller("NavCtrl", function($scope){
   $scope.navContacts=[
   {
-    name:"Logout",
+    name:"logout",
     url: "#/Logout"
   },
   {
-    name:"All Contacts",
+    name:"all contacts",
     url: "#/contacts/list"
   },
   {
-    name:"New Contacts",
+    name:"new contacts",
     url: "#/contacts/new"
   }];
 });
